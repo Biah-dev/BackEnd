@@ -4,14 +4,18 @@ export default function generateBillEmail({
   parcelasOport = '',
   vlrParcelaOport = 0,
   dtVencParcela = '',
-  NFeParcela = '',
-  pedidoCliOport = '',
+  vlrLiqOport = '',
 }) {
   // Format currency to Brazilian Real standard (e.g., 1.000,00)
-  const formattedValue = new Intl.NumberFormat('pt-BR', {
+  const parcelaValueFormatted = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   }).format(vlrParcelaOport);
+
+  const totalValueFormatted = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(vlrLiqOport);
 
   return `<!DOCTYPE html>
 <html lang="pt-br">
@@ -63,19 +67,21 @@ export default function generateBillEmail({
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* Header Azul */
+        /* Header Claro com Logo + Título */
         .header {
-            background-color: #005696;
-            padding: 40px 20px;
-            text-align: center;
+            background-color: #ffffff;
+            padding: 30px 30px 12px;
+            border-bottom: 1px solid #eef2f6;
         }
 
         .header h1 {
-            color: #ffffff;
-            font-size: 22px;
+            color: #005696;
+            font-size: 18px;
+            line-height: 24px;
+            mso-line-height-rule: exactly;
             margin: 0;
             letter-spacing: 2px;
-            font-weight: bold;
+            font-weight: 600;
             text-transform: uppercase;
         }
 
@@ -169,10 +175,8 @@ export default function generateBillEmail({
             display: inline-block;
             margin: 0 12px;
             width: 20px;
-            filter: brightness(0) invert(1);
+            height: 20px;
         }
-
-        /* Torna branco/vetor */
 
         .btn {
             display: inline-block;
@@ -190,10 +194,7 @@ export default function generateBillEmail({
 <body>
     <table role="presentation" class="container">
         <tr>
-            <td class="logo-container">
-                <img src="https://aidera.new7.dev/wp-content/uploads/Aidera-Logo.png" alt="Aidera Logo" width="180"
-                    style="margin: 0 auto;">
-            </td>
+            <td style="height: 30px; line-height: 30px; font-size: 0;">&nbsp;</td>
         </tr>
 
         <tr>
@@ -201,34 +202,54 @@ export default function generateBillEmail({
                 <table role="presentation">
                     <tr>
                         <td class="header">
-                            <h1>Faturamento de Serviços</h1>
+                            <table role="presentation">
+                                <tr>
+                                    <td align="left" valign="bottom"
+                                        style="width: 1%; white-space: nowrap; padding-bottom: 18px;">
+                                        <img src="https://aidera.new7.dev/wp-content/uploads/Aidera-Logo.png"
+                                            alt="Aidera Logo" width="150" style="display: block;">
+                                    </td>
+                                    <td align="right" valign="bottom">
+                                        <h1>Faturamento de Serviços</h1>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
 
                     <tr>
                         <td class="content">
                             <p>Prezado Cliente,</p>
-                            <p>Informamos que o faturamento dos serviços de consultoria técnica já foi processado.
-                                Confira os detalhes abaixo:</p>
+                            <p>Informamos que o faturamento dos serviços realizados pela equipe técnica foi processado.
+                                Para mais detalhes, confira os dados abaixo:</p>
 
                             <div class="invoice-box">
                                 <table role="presentation">
                                     <tr>
-                                        <td class="row">
-                                            <div class="label">Descrição do Serviço</div>
+                                        <td class="row" colspan="4">
+                                            <div class="label">Descrição do Projeto</div>
                                             <div class="value">${codOport} - ${descOport}</div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="row">
+                                        <td class="row" style="width: 1%; white-space: nowrap; padding-right: 46px;">
+                                            <div class="label">Pedido de Compra</div>
+                                            <div class="value">${parcelaValueFormatted}</div>
+                                        </td>
+                                        <td class="row" style="width: 1%; white-space: nowrap; padding-right: 46px;">
+                                            <div class="label">Parcela</div>
+                                            <div class="value">${parcelasOport}</div>
+                                        </td>
+                                        <td class="row" style="width: 1%; white-space: nowrap;">
                                             <div class="label">Vencimento</div>
                                             <div class="value">${dtVencParcela}</div>
                                         </td>
+                                        <td class="row" style="width: 100%;">&nbsp;</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-top: 15px;">
+                                        <td colspan="4" style="padding-top: 15px;">
                                             <div class="label">Valor Total</div>
-                                            <div class="value-total">${formattedValue}</div>
+                                            <div class="value-total">${totalValueFormatted}</div>
                                         </td>
                                     </tr>
                                 </table>
@@ -271,21 +292,28 @@ export default function generateBillEmail({
         <tr>
             <td class="footer">
                 <div class="social-icons">
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png"
-                            class="social-icon-img" alt="Instagram"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384007.png"
-                            class="social-icon-img" alt="WhatsApp"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384014.png"
-                            class="social-icon-img" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/aidera.tecnologia/" target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"
+                            class="social-icon-img" alt="Instagram" width="20" height="20"
+                            style="width: 20px; height: 20px;"></a>
+                    <a href="https://wa.me/5511954235073?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png"
+                            class="social-icon-img" alt="WhatsApp" width="20" height="20"
+                            style="width: 20px; height: 20px;"></a>
+                    <a href="https://www.linkedin.com/company/aidera-tecnologia-empresarial/" target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"
+                            class="social-icon-img" alt="LinkedIn" width="20" height="20"
+                            style="width: 20px; height: 20px;"></a>
+                    <a href="https://aidera.com.br" target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/globe.png" class="social-icon-img"
+                            alt="Site" width="20" height="20" style="width: 20px; height: 20px;"></a>
                 </div>
-                <p style="letter-spacing: 1px;"><b>AIDERA TECNOLOGIA</b></p>
-                <p style="opacity: 0.7; margin-top: 5px;">Especialista ERP Datasul</p>
-                <p style="font-style: italic; margin-top: 25px; font-size: 11px; opacity: 0.5;">"Não se deixem vencer
+                
+                <p style="font-style: italic; margin-top: 25px; font-size: 11px; opacity: 0.6;">"Não se deixem vencer
                     pelo mal, mas vençam o mal com o bem." <br> Romanos 12:21</p>
             </td>
         </tr>
     </table>
-    
 </body>
 
 </html>`;

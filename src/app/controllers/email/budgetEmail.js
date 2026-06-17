@@ -73,19 +73,21 @@ export default function generateBudgetEmail(
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* Header Azul */
+        /* Header Claro com Logo + Título */
         .header {
-            background-color: #005696;
-            padding: 40px 20px;
-            text-align: center;
+            background-color: #ffffff;
+            padding: 30px 30px 12px;
+            border-bottom: 1px solid #eef2f6;
         }
 
         .header h1 {
-            color: #ffffff;
-            font-size: 20px;
+            color: #005696;
+            font-size: 18px;
+            line-height: 24px;
+            mso-line-height-rule: exactly;
             margin: 0;
-            letter-spacing: 3px;
-            font-weight: bold;
+            letter-spacing: 2px;
+            font-weight: 600;
             text-transform: uppercase;
         }
 
@@ -175,7 +177,7 @@ export default function generateBudgetEmail(
             padding: 0 5px;
         }
 
-        /* Rodapé com Ícones Sociais Quadrados/Proporcionais */
+        /* Rodapé com Ícones Monocromáticos */
         .footer {
             background-color: #005696;
             padding: 40px 30px;
@@ -186,22 +188,14 @@ export default function generateBudgetEmail(
 
         .social-icons {
             margin-bottom: 20px;
-            height: 24px;
         }
 
-        .social-icons a {
+        .social-icons img {
             display: inline-block;
-            text-decoration: none;
-            margin: 0 10px;
+            margin: 0 12px;
+            width: 20px;
+            height: 20px;
         }
-
-        .social-icon-img {
-            width: 24px;
-            height: 24px;
-            filter: brightness(0) invert(1);
-        }
-
-        /* Força o branco puro */
 
         .btn {
             display: inline-block;
@@ -221,10 +215,7 @@ export default function generateBudgetEmail(
 <body>
     <table role="presentation" class="container">
         <tr>
-            <td class="logo-container">
-                <img src="https://aidera.new7.dev/wp-content/uploads/Aidera-Logo.png" alt="Aidera Logo" width="180"
-                    style="margin: 0 auto;">
-            </td>
+            <td style="height: 30px; line-height: 30px; font-size: 0;">&nbsp;</td>
         </tr>
 
         <tr>
@@ -232,30 +223,48 @@ export default function generateBudgetEmail(
                 <table role="presentation">
                     <tr>
                         <td class="header">
-                            <h1>Proposta Comercial</h1>
+                            <table role="presentation">
+                                <tr>
+                                    <td align="left" valign="bottom"
+                                        style="width: 1%; white-space: nowrap; padding-bottom: 18px;">
+                                        <img src="https://aidera.new7.dev/wp-content/uploads/Aidera-Logo.png"
+                                            alt="Aidera Logo" width="150" style="display: block;">
+                                    </td>
+                                    <td align="right" valign="bottom">
+                                        <h1>Proposta Comercial</h1>
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
 
                     <tr>
                         <td class="content">
                             <p>Prezado Cliente,</p>
-                            <p>Apresentamos nossa proposta comercial para a execução dos serviços de integração e
-                                consultoria técnica conforme solicitado.</p>
+                            <p>Apresentamos nossa proposta comercial para a execução dos serviços de consultoria técnica e ou desenvolvimento
+                                conforme solicitado.</p>
 
                             <div class="proposal-box">
                                 <table role="presentation">
                                     <tr>
-                                        <td class="row">
+                                        <td class="row" colspan="4">
                                             <div class="label">Proposta</div>
                                             <div class="value">${codOport} | ${descOport}</div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="row">
+                                    <tr>                                        
+                                        <td class="row" style="width: 1%; white-space: nowrap; padding-right: 46px;">
                                             <div class="label">Modelo de Contratação</div>
-                                            <div class="value">${tipoCobrancaOport} (${parcelasOport} Parcelas)</div>
+                                            <div class="value">${tipoCobrancaOport}</div>
                                         </td>
+                                        <td class="row" style="width: 1%; white-space: nowrap; padding-right: 46px;">
+                                            <div class="label">Número de Parcelas</div>
+                                            <div class="value">${parcelasOport}</div>
+                                        </td>
+                                        
+                                        <td class="row" style="width: 100%;">&nbsp;</td>
                                     </tr>
+                                   
                                     <tr>
                                         <td style="padding-top: 15px;">
                                             <div class="label">Investimento Total</div>
@@ -307,16 +316,24 @@ export default function generateBudgetEmail(
         <tr>
             <td class="footer">
                 <div class="social-icons">
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384015.png"
-                            class="social-icon-img" alt="Instagram"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384007.png"
-                            class="social-icon-img" alt="WhatsApp"></a>
-                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384014.png"
-                            class="social-icon-img" alt="LinkedIn"></a>
+                    <a href="https://www.instagram.com/aidera.tecnologia/" target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"
+                            class="social-icon-img" alt="Instagram" width="20" height="20"
+                            style="width: 20px; height: 20px;"></a>
+                    <a href="https://wa.me/5511954235073?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png"
+                            class="social-icon-img" alt="WhatsApp" width="20" height="20"
+                            style="width: 20px; height: 20px;"></a>
+                    <a href="https://www.linkedin.com/company/aidera-tecnologia-empresarial/" target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"
+                            class="social-icon-img" alt="LinkedIn" width="20" height="20"
+                            style="width: 20px; height: 20px;"></a>
+                    <a href="https://aidera.com.br" target="_blank" rel="noopener"><img
+                            src="https://img.icons8.com/ios-filled/50/ffffff/globe.png" class="social-icon-img"
+                            alt="Site" width="20" height="20" style="width: 20px; height: 20px;"></a>
                 </div>
-                <p style="letter-spacing: 1px;"><b>AIDERA TECNOLOGIA</b></p>
-                <p style="opacity: 0.7; margin-top: 5px;">Especialista ERP Datasul</p>
-                <p style="font-style: italic; margin-top: 25px; font-size: 11px; opacity: 0.5;">"Não se deixem vencer
+
+                <p style="font-style: italic; margin-top: 25px; font-size: 11px; opacity: 0.6;">"Não se deixem vencer
                     pelo mal, mas vençam o mal com o bem." <br> Romanos 12:21</p>
             </td>
         </tr>
