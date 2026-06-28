@@ -118,7 +118,7 @@ export default function generateBudgetEmail(
         }
 
         .value {
-            font-size: 14px;
+            font-size: 18px;
             color: #222;
             font-weight: 500;
         }
@@ -227,10 +227,10 @@ export default function generateBudgetEmail(
                                 <tr>
                                     <td align="left" valign="bottom"
                                         style="width: 1%; white-space: nowrap; padding-bottom: 18px;">
-                                        <img src="https://aidera.new7.dev/wp-content/uploads/Aidera-Logo.png"
+                                        <img src="https://aidera.com.br/wp-content/uploads/Aidera-Logo.png"
                                             alt="Aidera Logo" width="150" style="display: block;">
                                     </td>
-                                    <td align="right" valign="bottom">
+                                    <td align="right" valign="middle">
                                         <h1>Proposta Comercial</h1>
                                     </td>
                                 </tr>
@@ -249,17 +249,17 @@ export default function generateBudgetEmail(
                                     <tr>
                                         <td class="row" colspan="4">
                                             <div class="label">Proposta</div>
-                                            <div class="value">${codOport} | ${descOport}</div>
+                                            <div class="value" style="font-size: 16px;font-weight:bold">${codOport} | ${descOport}</div>
                                         </td>
                                     </tr>
                                     <tr>                                        
                                         <td class="row" style="width: 1%; white-space: nowrap; padding-right: 46px;">
                                             <div class="label">Modelo de Contratação</div>
-                                            <div class="value">${tipoCobrancaOport}</div>
+                                            <div class="value" style="font-size: 16px;font-weight:bold">${tipoCobrancaOport}</div>
                                         </td>
                                         <td class="row" style="width: 1%; white-space: nowrap; padding-right: 46px;">
                                             <div class="label">Número de Parcelas</div>
-                                            <div class="value">${parcelasOport}</div>
+                                            <div class="value" style="font-size: 16px;font-weight:bold">${parcelasOport}</div>
                                         </td>
                                         
                                         <td class="row" style="width: 100%;">&nbsp;</td>
@@ -288,20 +288,20 @@ export default function generateBudgetEmail(
                             <table role="presentation">
                                 <tr>
                                     <td class="feature-item">
-                                        <img src="https://aidera.new7.dev/wp-content/uploads/Financas-Icon.png"
-                                            class="feature-icon" alt="Financeiro">
+                                        <img src="https://aidera.com.br/wp-content/uploads/Financas-Icon.png"
+                                            class="feature-icon" width="32" height="32" style="width: 32px; height: 32px; display: block; margin: 0 auto 10px;" alt="Financeiro">
                                         <b>Financeiro</b>
                                         <p>Gestão de fluxo e controle de operações financeiras.</p>
                                     </td>
                                     <td class="feature-item">
-                                        <img src="https://aidera.new7.dev/wp-content/uploads/Logistica-Icon.png"
-                                            class="feature-icon" alt="Logística">
+                                        <img src="https://aidera.com.br/wp-content/uploads/Logistica-Icon.png"
+                                            class="feature-icon" width="32" height="32" style="width: 32px; height: 32px; display: block; margin: 0 auto 10px;" alt="Logística">
                                         <b>Logística</b>
                                         <p>Otimização de estoques e fluxos de suprimentos.</p>
                                     </td>
                                     <td class="feature-item">
-                                        <img src="https://aidera.new7.dev/wp-content/uploads/Fiscal-Icon.png"
-                                            class="feature-icon" alt="Fiscal">
+                                        <img src="https://aidera.com.br/wp-content/uploads/Fiscal-Icon.png"
+                                            class="feature-icon" width="32" height="32" style="width: 32px; height: 32px; display: block; margin: 0 auto 10px;" alt="Fiscal">
                                         <b>Fiscal</b>
                                         <p>Conformidade tributária e gestão de obrigações.</p>
                                     </td>
@@ -319,18 +319,18 @@ export default function generateBudgetEmail(
                     <a href="https://www.instagram.com/aidera.tecnologia/" target="_blank" rel="noopener"><img
                             src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png"
                             class="social-icon-img" alt="Instagram" width="20" height="20"
-                            style="width: 20px; height: 20px;"></a>
+                            style="width: 20px; height: 20px; margin: 0 12px"></a>
                     <a href="https://wa.me/5511954235073?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener"><img
                             src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png"
                             class="social-icon-img" alt="WhatsApp" width="20" height="20"
-                            style="width: 20px; height: 20px;"></a>
+                            style="width: 20px; height: 20px; margin: 0 12px"></a>
                     <a href="https://www.linkedin.com/company/aidera-tecnologia-empresarial/" target="_blank" rel="noopener"><img
                             src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png"
                             class="social-icon-img" alt="LinkedIn" width="20" height="20"
-                            style="width: 20px; height: 20px;"></a>
+                            style="width: 20px; height: 20px; margin: 0 12px"></a>
                     <a href="https://aidera.com.br" target="_blank" rel="noopener"><img
                             src="https://img.icons8.com/ios-filled/50/ffffff/globe.png" class="social-icon-img"
-                            alt="Site" width="20" height="20" style="width: 20px; height: 20px;"></a>
+                            alt="Site" width="20" height="20" style="width: 20px; height: 20px; margin: 0 12px"></a>
                 </div>
 
                 <p style="font-style: italic; margin-top: 25px; font-size: 11px; opacity: 0.6;">"Não se deixem vencer
