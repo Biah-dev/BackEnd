@@ -197,7 +197,19 @@ class AwsSesController {
 
       const parcela = await Parcela.findOne({
         where: { id },
-        include: [{ model: Oportunidade }, { model: ParcelaFiles }],
+        include: [
+          {
+            model: Oportunidade,
+            include: [
+              {
+                model: Cotacao,
+                order: [['createdAt', 'DESC']],
+                limit: 1,
+              },
+            ],
+          },
+          { model: ParcelaFiles },
+        ],
       });
 
       const parcelaDateAux = parcela.dtVencimento.split('-');
@@ -205,14 +217,16 @@ class AwsSesController {
 
       const contato = await CliCont.findOne({ where: { id: parcela.Oportunidade.contato } });
 
+      const cotacaos = parcela.Oportunidade.Cotacaos;
+      cotacaos.sort((a, b) => b.id - a.id);
+
       const dataBill = {
         codOport: parcela.Oportunidade.cod,
         descOport: parcela.Oportunidade.desc,
         parcelasOport: parcela.parcela,
         vlrParcelaOport: (parcela.vlrParcela / 100).toFixed(2),
         dtVencParcela: dateAux,
-        NFeParcela: parcela.notaFiscal,
-        pedidoCliOport: parcela.pedidoCliente || 'Não Informado',
+        vlrLiqOport: (parcela.Oportunidade.Cotacaos[0].vlrLiq / 100).toFixed(2),
       };
 
       const filesArray = parcela.ParcelaFiles.map(((arr) => ({
@@ -476,7 +490,19 @@ class AwsSesController {
 
       const parcela = await Parcela.findOne({
         where: { id },
-        include: [{ model: Oportunidade }, { model: ParcelaFiles }],
+        include: [
+          {
+            model: Oportunidade,
+            include: [
+              {
+                model: Cotacao,
+                order: [['createdAt', 'DESC']],
+                limit: 1,
+              },
+            ],
+          },
+          { model: ParcelaFiles },
+        ],
       });
       const parcelaDateAux = parcela.dtVencimento.split('-');
       const dateAux = `${parcelaDateAux[2]}/${parcelaDateAux[1]}/${parcelaDateAux[0]}`;
@@ -494,14 +520,16 @@ class AwsSesController {
         data: resolve(__dirname, `../../../../tmp/uploads/oportunidades/${arr.path}`),
       })));
 
+      const cotacaos = parcela.Oportunidade.Cotacaos;
+      cotacaos.sort((a, b) => b.id - a.id);
+
       const dataBill = {
         codOport: parcela.Oportunidade.cod,
         descOport: parcela.Oportunidade.desc,
         parcelasOport: parcela.parcela,
         vlrParcelaOport: (parcela.vlrParcela / 100).toFixed(2),
         dtVencParcela: dateAux,
-        NFeParcela: parcela.notaFiscal,
-        pedidoCliOport: parcela.pedidoCliente || 'Não Informado',
+        vlrLiqOport: (parcela.Oportunidade.Cotacaos[0].vlrLiq / 100).toFixed(2),
       };
       const sendEmailAux = process.env.ENVIRONMENT === 'Aidera' ? async () => {
         const message = {
